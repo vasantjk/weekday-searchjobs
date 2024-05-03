@@ -13,7 +13,9 @@ export default function SearchJob() {
   const { data, isLoading, isError, refetch, isFetching } = useQuery(
     'fetchJobs',
     () => fetchJobs(offset),
-    { refetchOnWindowFocus: false }
+    {
+      refetchOnWindowFocus: false,
+    }
   );
 
   useEffect(() => {

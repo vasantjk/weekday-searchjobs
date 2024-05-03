@@ -1,7 +1,8 @@
-import { useSelector } from 'react-redux';
+import { useEffect, useRef } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import './job-cards.css';
-
+import { updateOffset } from '../../stores/JobSearch';
 import Description from '../Description';
 
 export default function JobCards() {
@@ -9,6 +10,30 @@ export default function JobCards() {
   const jdList = useSelector(
     (state) => state.searchJob.jobs[hasFilter ? 'filtered' : 'jdList']
   );
+  const dispatch = useDispatch();
+  const observer = useRef();
+
+  useEffect(() => {
+    observer.current = new IntersectionObserver(
+      (entries) => {
+        const firstEntry = entries[0];
+        if (firstEntry.isIntersecting && !hasFilter) {
+          dispatch(updateOffset(10));
+        }
+      },
+      { threshold: 1 }
+    );
+
+    if (observer.current) {
+      observer.current.observe(document.getElementById('observer'));
+    }
+
+    return () => {
+      if (observer.current) {
+        observer.current.disconnect();
+      }
+    };
+  }, [dispatch, hasFilter]);
 
   const renderJobCards = () => {
     return jdList.map(
@@ -58,6 +83,7 @@ export default function JobCards() {
   return (
     <>
       <div className='jd-wrapper'>{renderJobCards()}</div>
+      <div id='observer' />
     </>
   );
 }

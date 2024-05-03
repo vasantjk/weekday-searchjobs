@@ -45,6 +45,9 @@ const JobSlice = createSlice({
   name: 'jobDetails',
   initialState,
   reducers: {
+    updateOffset: (state, action) => {
+      state.jobs.offset += action.payload;
+    },
     updateJobs: (state, action) => {
       if (action.payload) {
         const { totalCount, jdList } = action.payload;
@@ -55,6 +58,6 @@ const JobSlice = createSlice({
   },
 });
 
-export const { updateJobs } = JobSlice.actions;
+export const { updateJobs, updateOffset } = JobSlice.actions;
 
 export default JobSlice.reducer;
