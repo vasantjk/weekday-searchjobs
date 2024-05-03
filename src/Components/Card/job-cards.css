@@ -1,0 +1,64 @@
+.jd-wrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1em;
+  box-sizing: border-box;
+
+  margin-top: 1em;
+
+  .about {
+    height: 150px;
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  a {
+    border: 1px solid;
+    padding: 0.5em 1.5em;
+    border-radius: 5px;
+    display: block;
+    margin: auto auto 10px;
+  }
+}
+
+.jd-list {
+  text-align: left;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  border-radius: 10px;
+  padding: 0.5em 0.8em;
+
+  .company {
+    display: flex;
+    gap: 1em;
+  }
+
+  .salary {
+    margin-top: 0.5em;
+    font-size: 14px;
+  }
+
+  h4 {
+    text-transform: uppercase;
+  }
+
+  .experience {
+    letter-spacing: 1px;
+    font-size: 13px;
+    font-weight: 600;
+    p {
+      margin-top: 0.2em;
+    }
+  }
+
+  .location {
+    text-transform: capitalize;
+  }
+
+  .jdlink {
+    text-align: center;
+  }
+}
+
+#observer {
+  height: 1em;
+}

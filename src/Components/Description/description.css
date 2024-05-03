@@ -1,0 +1,17 @@
+.desc {
+  display: -webkit-box;
+  max-width: 400px;
+  -webkit-line-clamp: 6;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.desc[data-expand='true'] {
+  overflow: visible;
+  -webkit-line-clamp: unset;
+}
+
+.desc-wrapper {
+  margin-bottom: 0.5em;
+}

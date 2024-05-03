@@ -55,7 +55,6 @@ const JobSlice = createSlice({
   },
 });
 
-export const { updateJobs, updateOffset, setFilter, updateLoading } =
-  JobSlice.actions;
+export const { updateJobs } = JobSlice.actions;
 
 export default JobSlice.reducer;

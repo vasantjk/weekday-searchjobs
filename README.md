@@ -1,4 +1,4 @@
-## Start Application
+# Start Application
 
 ## Installation
 
