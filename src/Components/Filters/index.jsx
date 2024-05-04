@@ -10,6 +10,7 @@ import {
   REMOTE_OPTIONS,
   ROLES,
 } from '../../constants';
+import './filter.css';
 
 export default function JobFilter() {
   const dispatch = useDispatch();
@@ -40,54 +41,58 @@ export default function JobFilter() {
   };
 
   return (
-    <Stack spacing={3} direction={{ xs: 'column', sm: 'row' }}>
-      <Autocomplete
-        onChange={handleRoleChange}
-        id='roles'
-        fullWidth
-        size='small'
-        options={ROLES}
-        renderInput={({ ...params }) => <TextField label='Roles' {...params} />}
-      />
-      <Autocomplete
-        onChange={handleExperienceChange}
-        fullWidth
-        id='experience'
-        size='small'
-        options={EXPERIENCE}
-        renderInput={({ ...params }) => (
-          <TextField label='Experience' {...params} />
-        )}
-      />
-      <Autocomplete
-        onChange={handleBasePayChange}
-        fullWidth
-        size='small'
-        id='minBasePay'
-        options={MIN_BASE_PAY}
-        renderInput={({ ...params }) => (
-          <TextField label='Min Base Pay' {...params} />
-        )}
-      />
-      <Autocomplete
-        multiple
-        fullWidth
-        id='remoteOptions'
-        size='small'
-        options={REMOTE_OPTIONS}
-        renderInput={({ ...params }) => (
-          <TextField label='Remote Work Preferences' {...params} />
-        )}
-        onChange={handleRemoteChange}
-      />
-      <TextField
-        placeholder='Search Company Name'
-        label='Company Name'
-        id='Company Name'
-        onChange={handleCompanyNameChange}
-        fullWidth
-        size='small'
-      />
-    </Stack>
+    <div className='filter-wrapper'>
+      <Stack spacing={2} direction={{ xs: 'column', sm: 'row' }}>
+        <Autocomplete
+          onChange={handleRoleChange}
+          id='roles'
+          fullWidth
+          size='small'
+          options={ROLES}
+          renderInput={({ ...params }) => (
+            <TextField label='Roles' {...params} />
+          )}
+        />
+        <Autocomplete
+          onChange={handleExperienceChange}
+          fullWidth
+          id='experience'
+          size='small'
+          options={EXPERIENCE}
+          renderInput={({ ...params }) => (
+            <TextField label='Experience' {...params} />
+          )}
+        />
+        <Autocomplete
+          onChange={handleBasePayChange}
+          fullWidth
+          size='small'
+          id='minBasePay'
+          options={MIN_BASE_PAY}
+          renderInput={({ ...params }) => (
+            <TextField label='Min Base Pay' {...params} />
+          )}
+        />
+        <Autocomplete
+          multiple
+          fullWidth
+          id='remoteOptions'
+          size='small'
+          options={REMOTE_OPTIONS}
+          renderInput={({ ...params }) => (
+            <TextField label='Remote Work Preferences' {...params} />
+          )}
+          onChange={handleRemoteChange}
+        />
+        <TextField
+          placeholder='Search Company Name'
+          label='Company Name'
+          id='Company Name'
+          onChange={handleCompanyNameChange}
+          fullWidth
+          size='small'
+        />
+      </Stack>
+    </div>
   );
 }

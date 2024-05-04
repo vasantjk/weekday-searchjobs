@@ -12,6 +12,7 @@ import {
 const initialState = {
   jobs: {
     jdList: [],
+    jdUids: {},
     totalCount: 0,
     offset: 10,
     filtered: [],
@@ -60,10 +61,25 @@ const JobSlice = createSlice({
     updateJobs: (state, action) => {
       if (action.payload) {
         const { totalCount, jdList } = action.payload;
+
+        // Create a new array with unique jdList items
+        const uniqueJdList = jdList.filter(
+          ({ jdUid }) => !state.jobs.jdUids[jdUid]
+        );
+
+        // Update the totalCount
         state.jobs.totalCount = totalCount;
-        state.jobs.jdList.push(...jdList);
+
+        // Append unique items to the jdList array
+        state.jobs.jdList.push(...uniqueJdList);
+
+        // Update jdUids to track existing jdUid values
+        uniqueJdList.forEach(({ jdUid }) => {
+          state.jobs.jdUids[jdUid] = true;
+        });
       }
     },
+
     updateOffset: (state, action) => {
       state.jobs.offset += action.payload;
     },
