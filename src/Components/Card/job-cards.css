@@ -3,8 +3,11 @@
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 1em;
   box-sizing: border-box;
-
   margin-top: 1em;
+
+  @media (width<400px) {
+    grid-template-columns: none;
+  }
 
   .about {
     height: 150px;
@@ -26,10 +29,22 @@
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   border-radius: 10px;
   padding: 0.5em 0.8em;
+  min-height: 300px;
 
   .company {
     display: flex;
     gap: 1em;
+
+    /* to load blur image instead of showing blank in the place of company logo */
+    img {
+      background: url('../../Assets/bluredCompany_img.jpg') no-repeat;
+      background-size: contain;
+      height: 50px;
+      width: 50px;
+    }
+    h4 {
+      margin-top: 0;
+    }
   }
 
   .salary {

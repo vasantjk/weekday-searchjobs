@@ -3,8 +3,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import CircularProgress from '@mui/material/CircularProgress';
 
-import { fetchJobs, updateJobs } from '../stores/JobSearch';
+import { updateJobs } from '../stores/JobSearch';
 import JobCards from '../Components/Card';
+import JobFilter from '../Components/Filters';
+import { fetchJobs } from '../api';
 
 export default function SearchJob() {
   const dispatch = useDispatch();
@@ -30,6 +32,7 @@ export default function SearchJob() {
 
   return (
     <>
+      <JobFilter />
       {!isLoading && !isError && <JobCards />}
       {(isLoading || isFetching) && <CircularProgress />}
     </>
