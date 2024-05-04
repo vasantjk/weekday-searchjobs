@@ -35,15 +35,12 @@
     display: flex;
     gap: 1em;
 
-    /* to load blur image instead of showing blank in the place of company logo */
-    img {
-      background: url('../../Assets/bluredCompany_img.jpg') no-repeat;
-      background-size: contain;
-      height: 50px;
-      width: 50px;
-    }
     h4 {
-      margin-top: 0;
+      margin-block: 0.2em;
+    }
+    h5 {
+      margin: 0;
+      text-transform: capitalize;
     }
   }
 

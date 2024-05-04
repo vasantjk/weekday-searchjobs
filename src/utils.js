@@ -25,4 +25,14 @@ const minFilter = (datas, compareValue, property) =>
 const multiFilter = (datas, compareValue, property) =>
   datas.filter((data) => compareValue.includes(data[property]));
 
-export { isFilter, SingleFilter, minFilter, multiFilter, isEmpty };
+const searchFilter = (datas, compareValue, property) =>
+  datas.filter((data) => data[property].toLowerCase().includes(compareValue));
+
+export {
+  isFilter,
+  SingleFilter,
+  minFilter,
+  multiFilter,
+  searchFilter,
+  isEmpty,
+};

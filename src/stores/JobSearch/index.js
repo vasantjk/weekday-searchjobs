@@ -6,6 +6,7 @@ import {
   isEmpty,
   isFilter,
   multiFilter,
+  searchFilter,
 } from '../../utils';
 
 const initialState = {
@@ -19,6 +20,7 @@ const initialState = {
       experience: 0,
       remote: [],
       basePay: 0,
+      companyName: '',
     },
     hasFilter: false,
   },
@@ -26,7 +28,7 @@ const initialState = {
 
 const handleFilter = (state) => {
   let totalFilter = state.jdList;
-  const { role, experience, basePay, remote } = state.filtersList;
+  const { role, experience, basePay, remote, companyName } = state.filtersList;
 
   if (!isEmpty(role)) {
     totalFilter = SingleFilter(totalFilter, role, 'jobRole');
@@ -42,6 +44,10 @@ const handleFilter = (state) => {
 
   if (!isEmpty(remote)) {
     totalFilter = multiFilter(totalFilter, remote, 'location');
+  }
+
+  if (!isEmpty(companyName)) {
+    totalFilter = searchFilter(totalFilter, companyName, 'companyName');
   }
 
   return totalFilter;
@@ -62,14 +68,15 @@ const JobSlice = createSlice({
       state.jobs.offset += action.payload;
     },
     setFilter: (state, action) => {
-      const { role, experience, basePay, remote } = action.payload;
+      const { role, experience, basePay, remote, companyName } = action.payload;
 
       state.jobs.filtersList.role = role ?? '';
       state.jobs.filtersList.experience = experience ?? 0;
       state.jobs.filtersList.basePay = basePay ?? 0;
       state.jobs.filtersList.remote = remote ?? [];
+      state.jobs.filtersList.companyName = companyName ?? '';
       state.jobs.hasFilter = isFilter(state.jobs.filtersList);
-      console.log(state.jobs);
+
       state.jobs.filtered = handleFilter(state.jobs);
     },
   },

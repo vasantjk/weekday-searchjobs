@@ -35,6 +35,9 @@ export default function JobFilter() {
   const handleRemoteChange = (e, newValue) => {
     dispatch(setFilter({ ...filters, remote: newValue }));
   };
+  const handleCompanyNameChange = (e) => {
+    dispatch(setFilter({ ...filters, companyName: e.target.value }));
+  };
 
   return (
     <Stack spacing={3} direction={{ xs: 'column', sm: 'row' }}>
@@ -76,6 +79,14 @@ export default function JobFilter() {
           <TextField label='Remote Work Preferences' {...params} />
         )}
         onChange={handleRemoteChange}
+      />
+      <TextField
+        placeholder='Search Company Name'
+        label='Company Name'
+        id='Company Name'
+        onChange={handleCompanyNameChange}
+        fullWidth
+        size='small'
       />
     </Stack>
   );

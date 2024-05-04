@@ -53,6 +53,8 @@ export default function JobCards() {
         jobDetailsFromCompany,
         minExp,
         jdLink,
+        companyName,
+        logoUrl,
       }) => (
         <div className='jd-list' key={jdUid}>
           <section className='company'>
@@ -60,10 +62,13 @@ export default function JobCards() {
               width='50px'
               height='50px'
               loading='lazy'
-              src='https://storage.googleapis.com/weekday-assets/airtableAttachment_1713598325603_7ico7.jpg'
+              src={logoUrl}
               alt='company'
             />
-            <h4>{jobRole}</h4>
+            <hgroup>
+              <h4>{companyName}</h4>
+              <h5>{jobRole}</h5>
+            </hgroup>
           </section>
 
           <p className='salary'>
