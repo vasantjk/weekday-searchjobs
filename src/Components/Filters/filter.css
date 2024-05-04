@@ -5,4 +5,8 @@
   background: #fff;
   padding: 1em;
   margin: 0 -2rem;
+
+  @media (max-device-width: 480px) {
+    all: unset;
+  }
 }

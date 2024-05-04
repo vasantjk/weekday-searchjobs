@@ -7,11 +7,6 @@
   margin-block: 0.5em;
 }
 
-.desc[data-expand='true'] {
-  overflow: visible;
-  -webkit-line-clamp: unset;
-}
-
 .desc-wrapper {
   margin-block: 0.5em;
 
