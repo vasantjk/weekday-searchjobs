@@ -80,7 +80,11 @@ export default function JobFilter() {
           size='small'
           options={REMOTE_OPTIONS}
           renderInput={({ ...params }) => (
-            <TextField label='Remote Work Preferences' {...params} />
+            <TextField
+              label='Remote or Location'
+              placeholder='Remote or Location'
+              {...params}
+            />
           )}
           onChange={handleRemoteChange}
         />
