@@ -45,7 +45,6 @@ export default function JobCards() {
   const renderJobCards = () => {
     return jdList.map(
       ({
-        jdUid,
         minJdSalary,
         maxJdSalary,
         jobRole,
@@ -56,7 +55,10 @@ export default function JobCards() {
         companyName,
         logoUrl,
       }) => (
-        <div className='jd-list' key={jdUid}>
+        <div
+          className='jd-list'
+          key={`${companyName}_${minJdSalary}_${maxJdSalary}`}
+        >
           <section className='company'>
             <img
               width='50px'

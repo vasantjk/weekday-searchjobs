@@ -1,7 +1,7 @@
 .jd-wrapper {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 1em;
+  gap: 1.5em;
   box-sizing: border-box;
   margin-top: 1em;
 
@@ -27,38 +27,57 @@
 .jd-list {
   text-align: left;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-  border-radius: 10px;
-  padding: 0.5em 0.8em;
+  border-radius: 20px;
+  padding: 1em 0.8em;
   min-height: 300px;
 
   .company {
     display: flex;
     gap: 1em;
+    margin-block: 0.5em;
+    img {
+      object-fit: contain;
+    }
 
     h4 {
+      font-size: 13px;
       margin-block: 0.2em;
+      font-weight: 600;
+      letter-spacing: 1px;
+      margin-bottom: 3px;
+      color: var(--color-heading);
     }
     h5 {
+      font-size: 14px;
+      line-height: 1.5;
+      font-weight: 400;
       margin: 0;
-      text-transform: capitalize;
+      text-transform: uppercase;
     }
   }
 
   .salary {
-    margin-top: 0.5em;
+    margin-block: 0.5em;
     font-size: 14px;
   }
 
   h4 {
     text-transform: uppercase;
+    font-size: 1rem;
+    line-height: 1.5;
+    font-weight: 500;
+    color: var(--color-content);
+    margin-block: 0.5em;
   }
 
   .experience {
+    margin-block: 0.5em;
     letter-spacing: 1px;
     font-size: 13px;
     font-weight: 600;
+    color: var(--color-heading);
     p {
-      margin-top: 0.2em;
+      color: var(--color-content);
     }
   }
 

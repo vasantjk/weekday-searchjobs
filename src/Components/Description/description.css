@@ -4,6 +4,7 @@
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
+  margin-block: 0.5em;
 }
 
 .desc[data-expand='true'] {
@@ -12,5 +13,9 @@
 }
 
 .desc-wrapper {
-  margin-bottom: 0.5em;
+  margin-block: 0.5em;
+
+  bottom {
+    font-weight: bolder;
+  }
 }
