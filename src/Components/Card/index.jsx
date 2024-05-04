@@ -7,6 +7,8 @@ import Description from '../Description';
 
 export default function JobCards() {
   const hasFilter = useSelector((state) => state.searchJob.jobs.hasFilter);
+
+  // when the user applies any filter we should show the filtered data if no filter show original datas
   const jdList = useSelector(
     (state) => state.searchJob.jobs[hasFilter ? 'filtered' : 'jdList']
   );
@@ -17,6 +19,9 @@ export default function JobCards() {
     observer.current = new IntersectionObserver(
       (entries) => {
         const firstEntry = entries[0];
+        /* when the observer is intersection we update the offset
+         * and when there is any filter applied we dont need to load more jobs
+         */
         if (firstEntry.isIntersecting && !hasFilter) {
           dispatch(updateOffset(10));
         }
@@ -28,6 +33,7 @@ export default function JobCards() {
       observer.current.observe(document.getElementById('observer'));
     }
 
+    // clean up function when the component is unmounted
     return () => {
       if (observer.current) {
         observer.current.disconnect();

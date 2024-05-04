@@ -16,17 +16,20 @@ export default function SearchJob() {
     'fetchJobs',
     () => fetchJobs(offset),
     {
+      // when switching tabs this will call api to prevent passing this property
       refetchOnWindowFocus: false,
     }
   );
 
   useEffect(() => {
+    // whenever the data is fetched need to update in store
     if (data) {
       dispatch(updateJobs(data));
     }
   }, [data, dispatch]);
 
   useEffect(() => {
+    // offset changes then we are calling jobs api to get more jobs
     refetch();
   }, [offset, refetch]);
 
