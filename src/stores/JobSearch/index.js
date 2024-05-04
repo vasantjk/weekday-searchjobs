@@ -1,5 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+import {
+  minFilter,
+  SingleFilter,
+  isEmpty,
+  isFilter,
+  multiFilter,
+} from '../../utils';
+
 const initialState = {
   jobs: {
     jdList: [],
@@ -16,38 +24,33 @@ const initialState = {
   },
 };
 
-export const fetchJobs = async (offset) => {
-  const myHeaders = new Headers();
-  myHeaders.append('Content-Type', 'application/json');
+const handleFilter = (state) => {
+  let totalFilter = state.jdList;
+  const { role, experience, basePay, remote } = state.filtersList;
 
-  const raw = JSON.stringify({
-    limit: 10,
-    offset,
-  });
+  if (!isEmpty(role)) {
+    totalFilter = SingleFilter(totalFilter, role, 'jobRole');
+  }
 
-  const requestOptions = {
-    method: 'POST',
-    headers: myHeaders,
-    body: raw,
-  };
+  if (!isEmpty(experience)) {
+    totalFilter = minFilter(totalFilter, experience, 'minExp');
+  }
 
-  const response = (
-    await fetch(
-      'https://api.weekday.technology/adhoc/getSampleJdJSON',
-      requestOptions
-    )
-  ).json();
-  const data = await response;
-  return data;
+  if (!isEmpty(basePay)) {
+    totalFilter = minFilter(totalFilter, basePay, 'minJdSalary');
+  }
+
+  if (!isEmpty(remote)) {
+    totalFilter = multiFilter(totalFilter, remote, 'location');
+  }
+
+  return totalFilter;
 };
 
 const JobSlice = createSlice({
   name: 'jobDetails',
   initialState,
   reducers: {
-    updateOffset: (state, action) => {
-      state.jobs.offset += action.payload;
-    },
     updateJobs: (state, action) => {
       if (action.payload) {
         const { totalCount, jdList } = action.payload;
@@ -55,9 +58,23 @@ const JobSlice = createSlice({
         state.jobs.jdList.push(...jdList);
       }
     },
+    updateOffset: (state, action) => {
+      state.jobs.offset += action.payload;
+    },
+    setFilter: (state, action) => {
+      const { role, experience, basePay, remote } = action.payload;
+
+      state.jobs.filtersList.role = role ?? '';
+      state.jobs.filtersList.experience = experience ?? 0;
+      state.jobs.filtersList.basePay = basePay ?? 0;
+      state.jobs.filtersList.remote = remote ?? [];
+      state.jobs.hasFilter = isFilter(state.jobs.filtersList);
+      console.log(state.jobs);
+      state.jobs.filtered = handleFilter(state.jobs);
+    },
   },
 });
 
-export const { updateJobs, updateOffset } = JobSlice.actions;
+export const { updateJobs, updateOffset, setFilter } = JobSlice.actions;
 
 export default JobSlice.reducer;
