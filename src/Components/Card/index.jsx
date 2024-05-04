@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import './job-cards.css';
 import { updateOffset } from '../../stores/JobSearch';
 import Description from '../Description';
+import NoJobs from '../Nojobs';
 
 export default function JobCards() {
   const hasFilter = useSelector((state) => state.searchJob.jobs.hasFilter);
@@ -91,6 +92,7 @@ export default function JobCards() {
     <>
       <div className='jd-wrapper'>{renderJobCards()}</div>
       <div id='observer' />
+      <NoJobs />
     </>
   );
 }

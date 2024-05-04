@@ -36,6 +36,7 @@ export default function SearchJob() {
   return (
     <>
       <JobFilter />
+      {isError && <h2>Something Went wrong </h2>}
       {!isLoading && !isError && <JobCards />}
       {(isLoading || isFetching) && <CircularProgress />}
     </>
