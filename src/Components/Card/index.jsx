@@ -52,6 +52,7 @@ export default function JobCards() {
             <img
               width='50px'
               height='50px'
+              loading='lazy'
               src='https://storage.googleapis.com/weekday-assets/airtableAttachment_1713598325603_7ico7.jpg'
               alt='company'
             />
